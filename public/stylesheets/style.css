@@ -1,0 +1,38 @@
+.logo-small{
+  width:25px;
+  margin-right:5px;
+}
+
+.get-started-button{
+  font-size:22px;
+}
+
+.index-hero{
+  margin-top:50px;
+}
+
+.navbar-light{
+  background-color:#353535;
+}
+
+.headroom{
+  margin-top:40px;
+}
+
+.clientimg{
+  -webkit-filter:contrast(120%);
+}
+
+.clientimg:hover{
+  -webkit-filter:contrast(180%);
+}
+
+.social-icon{
+  color:black;
+  text-decoration:none;    
+}
+
+.social-icon:hover{
+  color:black;
+  text-decoration:none;    
+}

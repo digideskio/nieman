@@ -1,0 +1,31 @@
+<div class="widget-content headroom container">
+<h2> <%= users.length %> customers</h2>
+<hr>
+<% users.forEach(function(u){ %>
+  <p class="lead">
+    <strong><a href="http://twitter.com/<%= u.screen_name %>">@<%= u.screen_name %></a></strong>
+    / <%= u.plan %>
+    / <%= u.email %>
+    / <%= u.id %>
+    / <a href="http://followgen.com/stats/<%= u.screen_name %>">stats</a>
+  </p>
+  <p class="lead">
+    <img src="<%= u.profile_image_url %>" />
+  </p>
+  <p class="lead">
+    <strong>Following:</strong> <%= u.friends_count %> <strong>Followers:</strong> <%= u.followers_count %>
+  </p>
+  <p class="lead">
+    <%= u.description %>
+  </p>
+  <p class="lead">
+    <ul>
+    <% u.targets.split(',').forEach(function(target){ %>
+      <li><%= target %></li>
+    <% }); %>
+    </ul>
+  </p>
+  
+  <hr>
+<% }); %>
+</div>

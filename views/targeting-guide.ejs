@@ -1,0 +1,54 @@
+<%
+  var data = [
+    ['twitter search', 'containing both "twitter" and "search". This is the default targeting behavior'],
+    ['"happy hour"', 'containing the exact phrase "happy hour"'],
+    ['love OR hate', 'containing either "love" or "hate" (or both)'],
+    ['beer -root', 'containing "beer" but not "root"'],
+    ['#haiku', 'containing the hashtag "#haiku"'],
+    ['from:recborg', 'sent from the user @recborg'],
+    ['to:recborg', 'sent to the user @recborg'],
+    ['place:opentable:2', 'about the place with Open Table ID 2'],
+    ['place:247f43d441defc03', 'about the place with Twitter ID 247f43d441defc03'],
+    ['@recborg', 'mentioning @recborg'],
+    ['superhero since:2011-05-09', 'containing "superhero" and sent since date "2011-05-09" (year-month-day).'],
+    ['superhero until:2011-05-09', 'containing "superhero" and sent before the date "2011-05-09".'],
+    ['movie -scary :)', 'containing "movie", but not "scary", and with a positive attitude.'],
+    ['flight :(', 'containing "flight" and with a negative attitude.'],
+    ['traffic ?', 'containing "traffic" and asking a question.'],
+    ['hilarious filter:links', 'containing "hilarious" and with a URL.'],
+
+  ];
+%>
+<div class="page-header">
+  <h1>
+    <span style="color:#404040">Targeting guide
+    <small>define your audience</small>
+    </span>
+  </h1>
+</div>
+<div class="row">
+  <div class="span3">
+    <p class="lead">
+    <strong>Example</strong>
+    </p>
+  </div>
+  <div class="span offset1">
+    <p class="lead">
+    <strong>Target tweets..</strong>
+    </p>
+  </div>
+</div>
+<% data.forEach(function(d){ %>
+  <div class="row">
+    <div class="span3">
+      <p class="lead">
+        <%= d[0] %>  
+      </p>
+    </div>
+    <div class="span offset1">
+      <p class="lead">
+        <%= d[1] %>  
+      </p>
+    </div>
+  </div>
+<% }); %>

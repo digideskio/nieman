@@ -1,0 +1,1 @@
+node ../lib/favorite.js $1 98801479-wlur6TVqQSRxM1NF5VzQjHdJ62vaqK5W3KM74ehI sn70oObC3vR6kxPgsV2MxBSiHosKKgC5rHe1TYNZMA 

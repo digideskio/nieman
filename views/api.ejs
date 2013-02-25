@@ -1,0 +1,132 @@
+<div class="page-header">
+  <h1>
+    <span style="color:#404040">Followgen Developer Guide
+    <small>integrate with us</small>
+  </h1>
+</div>
+
+<h3>Registration</h3>
+
+<p class="lead">
+  1. If you don't already have one, you'll need to create a Twitter application (1 minute of work) at <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a>.
+  This is the app that your customers will be autheticating with, and it should contain your logo and brand name. <strong>Your app must have both Read and Write permissions.</strong>
+  <br><br>
+  2. Send your consumer key, and consumer secret to <a href="mailto:myles@followgen.com">myles@followgen.com</a>.<br>
+</p>	
+
+<hr>
+
+<h3>API Enpoints</h3>
+<p class="lead well">
+  All endpoints have the base URL : <strong>http://api.followgen.com</strong> and speak JSON.
+</p>
+
+<hr>
+
+<h3>Add a user</h3>
+<p class="lead well">
+<strong>POST /user</strong>
+</p>
+
+<p class="lead well">
+  <strong>Parameters</strong><br>
+    targets (array)<br>
+    consumer_key (string)<br>
+    consumer_secret (string)<br>
+    access_token_key (string)<br>
+    access_token_secret (string)
+</p>
+
+<p class="lead well">
+  <strong>Sample CURL request</strong><br>
+  <code>
+    curl -X POST --data "targets%5B%5D=%23target_1&targets%5B%5D=target_2&consumer_key=foo&consumer_secret=bar&access_token_key=alpha&access_token_secret=beta" http://api.followgen.com/user
+  </code>
+</p>
+
+<hr>
+
+<h3>View a user</h3>
+<p class="lead well">
+<strong>GET /user</strong>
+</p>
+
+<p class="lead well">
+  <strong>Parameters</strong><br>
+    consumer_key (string)<br>
+    consumer_secret (string)<br>
+    access_token_key (string)<br>
+    access_token_secret (string)
+</p>
+
+<p class="lead well">
+  <strong>Sample CURL request</strong><br>
+  <code>
+    curl "consumer_key=foo&consumer_secret=bar&access_token_key=alpha&access_token_secret=beta" http://api.followgen.com/user
+  </code>
+</p>
+
+<hr>
+
+<h3>Update a user</h3>
+<p class="lead well">
+<strong>PUT /user</strong>
+</p>
+
+<p class="lead well">
+  <strong>Parameters</strong><br>
+    targets (array) **the new array will replace the old one<br>
+    consumer_key (string)<br>
+    consumer_secret (string)<br>
+    access_token_key (string)<br>
+    access_token_secret (string)
+</p>
+
+<p class="lead well">
+  <strong>Sample CURL request</strong><br>
+  <code>
+    curl -X PUT --data "targets%5B%5D=%23target_1&targets%5B%5D=target_2&consumer_key=foo&consumer_secret=bar&access_token_key=alpha&access_token_secret=beta" http://api.followgen.com/user
+  </code>
+</p>
+
+<hr>
+
+<h3>Delete a user</h3>
+<p class="lead well">
+<strong>DELETE /user</strong>
+</p>
+
+<p class="lead well">
+  <strong>Parameters</strong><br>
+    consumer_key (string)<br>
+    consumer_secret (string)<br>
+    access_token_key (string)<br>
+    access_token_secret (string)
+</p>
+
+<p class="lead well">
+  <strong>Sample CURL request</strong><br>
+  <code>
+    curl -X DELETE --data "consumer_key=foo&consumer_secret=bar&access_token_key=alpha&access_token_secret=beta" http://api.followgen.com/user
+  </code>
+</p>
+
+<hr>
+
+<h3>View all users</h3>
+<p class="lead well">
+<strong>GET /users/all</strong>
+</p>
+
+<p class="lead well">
+  <strong>Parameters</strong><br>
+    consumer_key (string)<br>
+    consumer_secret (string)<br>
+</p>
+
+<p class="lead well">
+  <strong>Sample CURL request</strong><br>
+  <code>
+    curl "consumer_key=foo&consumer_secret=bar" http://api.followgen.com/users/all
+  </code>
+</p>

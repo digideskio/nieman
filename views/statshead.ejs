@@ -1,0 +1,23 @@
+<%
+  function prettyNum(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  function rewriteImgUrl(url){
+    return url.replace('a0.twimg', 'si0.twimg').replace('_normal', '_reasonably_small');
+  }
+%>
+<div class="span2">
+ <img alt="<%= user.name %>" class="img-rounded" style="width:170px;" src="<%= rewriteImgUrl(user.profile_image_url) %>" />
+</div>
+<div style="font-size:22px;" class="span5">
+  <p>
+    <strong>Following</strong>:  <%= prettyNum(user.friends_count) %>
+    <strong>Followers</strong>:  <%= prettyNum(user.followers_count) %>
+  </p>
+  <br>
+  <blockquote>
+    <p class="lead">
+      "<%= user.description %>"
+    </p>
+  </blockquote>
+</div>

@@ -1,0 +1,75 @@
+<div class="page-header">
+  <h1>
+    <span style="color:#404040">Plans
+    <small><%= subtitle %></small>
+  </h1>
+</div>
+<table style="font-size:17px" class="table table-hover">
+  <thead>
+    <tr style="color:#606060;font-size:22px">
+      <th>Plan</th>
+      <th>
+      Individual
+      <br>
+      <span style="color:#505050;font-size:17px">Grow your personal brand</span>
+      </th>
+      <th>Startup
+      <br>
+      <span style="color:#505050;font-size:17px">Grow your customer base</span>
+      </th>
+      <th>Enterprise
+      <br>
+      <span style="color:#505050;font-size:17px">...as in Star Trek</span>
+      </th>
+      <th>White Label
+      <br>
+      <span style="color:#505050;font-size:17px">Your own branded Followgen site.</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Stats Dashboard</td>
+      <td><span style="font-size:20px;color:green"><i class="icon-ok"></i></span></td>
+      <td><span style="font-size:20px;color:green"><i class="icon-ok"></i></span></td>
+      <td><span style="font-size:20px;color:green"><i class="icon-ok"></i></span></td>
+      <td>Negotiable</td>
+    </tr>
+    <tr>
+      <td>Weekly Email Report</td>
+      <td><span style="font-size:20px;color:red"><i class="icon-remove"></i></span></td>
+      <td><span style="font-size:20px;color:green"><i class="icon-ok"></i></span></td>
+      <td><span style="font-size:20px;color:green"><i class="icon-ok"></i></span></td>
+      <td>Negotiable</td>
+    </tr>
+    <tr>
+      <td>Targeting Terms</td>
+      <td>3</td>
+      <td>6</td>
+      <td>9</td>
+      <td>Negotiable</td>
+    </tr>
+    <tr>
+      <td>Monthly Impressions</td>
+      <td>6000</td>
+      <td>12,000</td>
+      <td>30,000</td>
+      <td>Negotiable</td>
+    </tr>
+    <tr style="color:#606060;font-size:22px;font-weight:800">
+      <td>Price per Month</td>
+      <td>$29</td>
+      <td>$79</td>
+      <td>$199</td>
+      <td>Ask</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a href="<%= locals.btn_href || '/payment/create?plan=individual' %>"><button class="btn btn-danger" type="button"><%= start_btn %></button> </a></td>
+      <td><a href="<%= locals.btn_href || '/payment/create?plan=startup' %>"><button class="btn btn-danger" type="button"><%= start_btn %></button> </a></td>
+      <td><a href="<%= locals.btn_href || '/payment/create?plan=enterprise' %>"><button class="btn btn-danger" type="button"><%= start_btn %></button> </a></td>
+      <td><a href="/contact"> <button class="btn btn-primary" type="button">Contact Us</button> </a></td>
+    </tr>
+  </toby>
+</table>
+

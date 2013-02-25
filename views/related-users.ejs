@@ -1,0 +1,19 @@
+<%
+  function rewriteImgUrl(url){
+    return url.replace('a0.twimg', 'si0.twimg').replace('_normal', '_reasonably_small');
+  }
+%>
+<div class="row hidden-phone">
+  <div class="span">
+    <p class="lead">
+      <strong>Related Users</strong>
+    </p>
+  </div>
+</div>
+<div class="row hidden-phone">
+  <% users.forEach(function(u, i){ %>
+    <div class="related-user span">
+      <a href="/stats/<%= u.screen_name %>"><img style="width:100%" src="<%= rewriteImgUrl(u.profile_image_url) %>" /></a>
+    </div>
+  <% }); %>
+</div>

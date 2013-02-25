@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span6">
+    <p class="lead">
+      <% if (isNaN(meta.velocity)) { %>
+      <i>Per day</i>
+      <% } else { %>
+      <i>Per day (about <%= meta.velocity%>)</i>
+      <% } %>
+    </p>
+  </div>
+  <div class="span6">
+    <p class="lead">
+      <i>In total (<%= meta.end %>)</i>
+    </p>
+  </div>
+</div>

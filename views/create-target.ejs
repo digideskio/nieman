@@ -1,0 +1,103 @@
+<% var num_targets = 5 %>
+
+<%
+  var placeholders = [
+    "#fashion",
+    "tea OR coffee",
+    "analytics filter:links",
+    "flights :(",
+    "iPhone?",
+    "'robin hood'",
+    "#SaaS",
+    "consulting",
+    "foo bar"
+  ];
+%>
+
+<div class="page-header">
+  <h1>
+    <span style="color:#404040"><%= title %><small> <%= subtitle %></small></span>
+  </h1>
+</div>
+
+<% if (locals.error) { %>
+  <div class="row">
+    <div class="span">
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Oops!</strong> Please fill in all of the boxes :-)
+      </div>
+    </div>
+  </div>
+<% } %>
+
+  <div class="row">
+    <div class="span4">
+      <div style="font-size:30px"><iclass="icon-search"></i></div>
+      <p class="lead">1. <strong>Target your audience</strong></p>
+      <form method="post" action="<%= submit_url %>">
+        
+        <% for (var i=0; i<num_targets; i++) { %>
+          <div class="input-prepend">
+            <span class="add-on"><%= i+1 %>.</span>
+            <input name="targets[<%= i %>]" class="span2" id="prependedInput" type="text" placeholder="e.g. <%= placeholders[i] %>" value="<%= (locals.user && user.targets && user.targets[i]) ? user.targets[i] : '' %>"/>
+          </div>
+        <% } %>
+
+    </div>
+    <div class="span3">
+      <p class="lead">
+        What is your target audience talking about?<br>
+        <a target="blank" href="/targeting-guide">View our Targeting Guide</a>
+      </p>
+    </div>
+    <div style="font-size:130px;color:#78A68F;opacity:0.4;margin-top:75px" class="hidden-phone span3 offset1">
+      <i class="icon-comments-alt icon-large"></i>  
+    </div>
+  </div>
+
+   <hr>
+   <div class="row">
+     <div class="span4">
+        <p class="lead">2. <strong>Select a region</strong></p>
+        <select name="geo">
+          <option value="everywhere">Anywhere</option>
+          <option value="usa">USA (entire)</option>
+          <option value="nyc">New York City</option>
+          <option value="boston">Boston</option>
+          <option value="sanfrancisco">San Francisco</option>
+          <option value="losangeles">Los Angeles</option>
+          <option value="eu">Europe (entire)</option>
+          <option value="london">London</option>
+          <option value="paris">Paris</option>
+          <option value="berlin">Berlin</option>
+        </select>
+      </div>
+      <div class="span3">
+        <p class="lead">
+          Where does your target audience live? If location is irrelevant, 
+          leave this as 'Anywhere'.
+        </p>
+      </div>
+      <div style="color:#78A68F;opacity:0.4;font-size:130px;margin-top:75px" class="hidden-phone span3 offset1">
+        <i class="icon-globe icon-large"></i>  
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span4">
+        <p class="lead">3. <strong>Weekly email report</strong></p>
+        <input name="email" type="email" placeholder="myemail@mycompany.com" value="<%= locals.user && user.email ? user.email : ''%>">  <br>
+      </div>
+      <div class="span3">
+        <p class="lead">
+          Where should we send it? This report will give you a statistical recount of the week.
+        </p>
+      </div>
+      <div style="opacity:0.4;color:#78A68F;font-size:130px;margin-top:75px" class="hidden-phone span3 offset1">
+        <i class="icon-pencil icon-large"></i>  
+      </div>
+    </div>
+        <hr>
+        <button type="submit" class="btn btn-large">Proceed</button>
+      </form>

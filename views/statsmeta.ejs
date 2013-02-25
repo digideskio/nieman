@@ -1,0 +1,25 @@
+<%
+  function prettyNum(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+%>
+
+<div class="row">
+  <div class="span">
+    <p class="lead">
+      <i class="<%= icon %>"></i>
+      <% if (meta.days-1>0) { %>
+
+        <strong><%= title %></strong> ( <strong><%= prettyNum(meta.end) %></strong> total, 
+        <strong><%= prettyNum(Math.abs(meta.gain)) %></strong> <%= future_days ? 'to be' : '' %> <%= meta.gain>-1 ? 'gained' : 'lost' %> 
+        in the <%= future_days ? 'next' : 'past' %> <strong><%= meta.days-1 %></strong> days, 
+        about <strong><%= prettyNum(meta.velocity) %></strong> per day )
+
+      <% } else { %>
+
+        <strong><%= title %></strong> (We'll collect more data over time)
+
+      <% } %>
+    </p>
+  </div>
+</div>

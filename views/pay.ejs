@@ -1,0 +1,86 @@
+<div class="page-header">
+  <h1>
+    <span style="color:#404040">Payment
+    <small>please enter your details</small>
+  </h1>
+</div>
+
+<div class="payment-errors-container row" style="<%= error ? '': 'display:none;' %>">
+  <div class="span">
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <span class="payment-errors">We were unable to process your payment. Please try again.</span>
+    </div>
+  </div>
+</div>
+    
+<form action="" method="POST" id="payment-form">
+    <div class="form-row">
+      <label>Card Number</label>
+      <input type="text" size="20" autocomplete="off" class="card-number"/>
+    </div>
+    <div class="form-row">
+      <label>CVC</label>
+      <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+    </div>
+    <div class="form-row">
+      <label>Expiration (MM/YYYY)</label>
+      <input class="input-small card-expiry-month" type="text" size="2" />
+      <span> / </span>
+      <input class="input-small card-expiry-year" type="text" size="4"/>
+    </div>
+    <input style="display:none" name="plan" type="text" size="4" value="<%= plan %>"/>
+    <button type="submit" class="submit-button btn btn-large">Submit Payment</button>
+
+</form>
+
+
+<script type="text/javascript">
+  
+  function stripeResponseHandler(status, response) {
+    if (response.error) {
+        // show the errors on the form
+        $(".payment-errors").text(response.error.message);
+        $(".payment-errors-container").show();
+        $(".submit-button").removeAttr("disabled");
+    } else {
+        var form$ = $("#payment-form");
+        // token contains id, last4, and card type
+        var token = response['id'];
+        // insert the token into the form so it gets submitted to the server
+        form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+        // and submit
+        form$.get(0).submit();
+    }
+	}
+
+  window.pageInit = function(){
+    Stripe.setPublishableKey('<%= config.public %>');
+    $("#payment-form").submit(function(event) {
+      // disable the submit button to prevent repeated clicks
+      $('.submit-button').attr("disabled", "disabled");
+
+
+      <% if (process.env.NODE_ENV==='development'){ %>
+          var stripeConfig = {
+            number: 4242424242424242,
+            cvc: 718,
+            exp_month: 10,
+            exp_year: 15 
+          };
+      <%  } else if (process.env.NODE_ENV==='production'){ %>
+          var stripeConfig = {
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          };
+      <%  } %>
+      
+      Stripe.createToken(stripeConfig, stripeResponseHandler);
+
+      // prevent the form from submitting with the default action
+      return false;
+    });
+  }
+</script>

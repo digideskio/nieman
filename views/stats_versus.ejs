@@ -1,0 +1,105 @@
+<%
+  var dayArr = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Day', '<%= a.user.name %>', '<%= b.user.name %>'],
+      <% Object.keys(a.followers).forEach(function(day){ %>
+        ['<%= dayArr[new Date(day/1).getDay()] %>',  <%= a.followers[day] %>, <%= b.followers[day] %>]<%= day == Object.keys(a.followers)[Object.keys(a.followers).length-1] ? '' : ',' %>
+      <% }); %>
+      ]);
+
+      var options = {
+        chartArea: {width:'80%', height:'80%'},
+        width:750,
+        height:350,
+        colors:['#FFF001', '#999999'],
+        legend:{position:'none'}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_followers'));
+      chart.draw(data, options);
+    }
+</script>
+<%
+  var share_url = 'http://followgen.com/stats/'+a.user.screen_name+'/v/'+b.user.screen_name;
+%>
+
+<div class="page-header">
+  <h1>
+    <span style="color:#404040"><%= a.user.name %></span> vs <span style="color:#404040"><%= b.user.name %></span> <small>social media stats</small>
+  </h1>
+</div>
+
+
+<div class="row">
+  <div class="span1">
+    <img class="img" style="width:100%;border-radius:10px;" src="<%= a.user.profile_image_url %>" />
+  </div>
+  <div style="font-size:16px" class="span6">
+    <p>
+      <strong>Following</strong>:  <%= a.user.friends_count %>
+      <strong>Followers</strong>:  <%= a.user.followers_count %>
+    </p>
+    <blockquote>
+      <p>
+        "<%= a.user.description %>"
+      </p>
+    </blockquote>
+  </div>
+  <div class="span4">
+    <div style="float:right;margin-right:-120px">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-via="<%= a.user.screen_name %>" data-dnt="true">Tweet</a>
+    </div>
+    <div style="float:right" class="fb-like" data-href="<%= share_url %>" data-send="false" data-width="50" data-layout="button_count" data-show-faces="false"></div>
+    <br>
+    <div style="float:right;margin-right:-170px;margin-top:15px">
+      <a href="https://twitter.com/<%= a.user.screen_name %>" class="twitter-follow-button" data-size="large" data-show-count="false" data-dnt="true">Follow @<%= a.user.screen_name %></a><br>
+      <a href="https://twitter.com/<%= b.user.screen_name %>" class="twitter-follow-button" data-size="large" data-show-count="false" data-dnt="true">Follow @<%= b.user.screen_name %></a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span1">
+    <img class="img" style="width:100%;border-radius:10px;" src="<%= b.user.profile_image_url %>" />
+  </div>
+  <div style="font-size:16px" class="span6">
+    <p>
+      <strong>Following</strong>:  <%= b.user.friends_count %>
+      <strong>Followers</strong>:  <%= b.user.followers_count %>
+    </p>
+    <blockquote>
+      <p>
+        "<%= b.user.description %>"
+      </p>
+    </blockquote>
+  </div>
+</div>
+<div class="row">
+  <div class="span7">
+    <hr>
+  </div>
+</div>
+<p class="lead">
+  <% if (a.meta_followers.days-1>0) { %>
+    <%= a.user.name %>: twitter followers ( <strong><%= Math.abs(a.meta_followers.gain) %></strong> <%= a.meta_followers.gain>-1 ? 'gained' : 'lost' %> in the past <strong><%= a.meta_followers.days-1 %></strong> days, <strong><%= a.meta_followers.velocity %></strong> per day )
+  <% } else { %>
+    <%= a.user.name %>: twitter followers (We'll collect more data over time)
+  <% } %>
+</p>
+<p class="lead">
+  <% if (b.meta_followers.days-1>0) { %>
+    <%= b.user.name %>: twitter followers ( <strong><%= Math.abs(b.meta_followers.gain) %></strong> <%= b.meta_followers.gain>-1 ? 'gained' : 'lost' %> in the past <strong><%= b.meta_followers.days-1 %></strong> days, <strong><%= b.meta_followers.velocity %></strong> per day )
+  <% } else { %>
+    <%= b.user.name %>: twitter followers (We'll collect more data over time)
+  <% } %>
+</p>
+<div class="row">
+  <div id="chart_div_followers"></div>
+</div>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

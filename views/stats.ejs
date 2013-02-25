@@ -1,0 +1,166 @@
+<%
+  var share_url = future_days ? 'http://followgen.com/forecast/'+user.screen_name : 'http://followgen.com/stats/'+user.screen_name;
+%>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+<div class="page-header">
+  <h1>
+    <span style="color:#404040"><%= user.name %></span> <small>social media <%= type %> <%= future_days ? '('+(future_days-1)+' days)' : '' %></small>
+  </h1>
+</div>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="<%= future_days ? '' : 'active' %>"><a href="/stats/<%= user.screen_name %>" >History</a></li>
+    <li class="<%= future_days ? 'active' : '' %>" ><a href="/forecast/<%= user.screen_name %>" >Forecast</a></li>
+  </ul>
+</div>
+
+<div class="row">
+  <div class="span">
+    <select class="timespan-select span3">
+      <% days = future_days ? future_days : days; %>
+      <option value="15" <%= days==15 ? 'selected' : '' %>>2 weeks</option>
+      <option value="31" <%= days==31 ? 'selected' : '' %>>1 month</option>
+      <option value="61" <%= days==61 ? 'selected' : '' %>>2 months</option>
+      <option value="122" <%= days==122 ? 'selected' : '' %>>4 months</option>
+    </select>
+  </div>
+</div>
+<hr>
+<!-- Social actions -->
+<!--<div class="row">
+   <div class="span"> 
+      <div style="float:left">
+        <a href="https://twitter.com/<%= user.screen_name %>" class="twitter-follow-button" data-size="small" data-show-count="false" data-dnt="true">Follow @<%= user.screen_name %></a>
+      </div>
+      <div style="float:left;margin-left:5px;" class="fb-like" data-href="<%= share_url %>" data-send="false" data-width="50" data-layout="button_count" data-show-faces="false"></div>
+      <div style="float:left;margin-left:5px;margin-right:-20px">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= share_url %>" data-via="<%= user.screen_name %>" data-dnt="true">Tweet</a>
+      </div>
+      <div style="float:left"  class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>
+    </div>
+</div>->
+<!--/ Social actions -->
+
+
+<div class="row">
+  <!-- Stats Head -->
+  <%- partial('statshead', {user:user}) %>
+  <!--/Stats Head-->
+  <div style="margin-top:-12px;font-size:22px;" class="hidden-phone span4">
+    <div id="chart_div_interaction"></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Followers -->
+<%- partial('statsmeta', {meta:meta_followers, title:'Followers gained', icon:'icon-group'}) %>
+<%- partial('chartsubtitle', {meta:meta_followers}) %>
+<div class="row">
+  <div class="span6"> <div id="chart_div_diff_followers"></div> </div>
+  <div class="span6"> <div id="chart_div_followers"></div> </div>
+</div>
+<!--/Followers -->
+
+<hr>
+
+<!-- Statuses -->
+<%- partial('statsmeta', {meta:meta_statuses, title:'Tweets', icon:'icon-comment-alt'}) %>
+<%- partial('chartsubtitle', {meta:meta_statuses}) %>
+<div class="row">
+  <div class="span6"> <div id="chart_div_diff_statuses"></div> </div>
+  <div class="span6"> <div id="chart_div_statuses"></div> </div>
+</div>
+<!--/Statuses -->
+
+<hr>
+
+<!-- Friends -->
+<%- partial('statsmeta', {meta:meta_following, title:'People followed', icon:'icon-share-alt'}) %>
+<%- partial('chartsubtitle', {meta:meta_following}) %>
+<div class="row">
+  <div class="span6"> <div id="chart_div_diff_following"></div> </div>
+  <div class="span6"> <div id="chart_div_following"></div> </div>
+</div>
+<!--/Friends-->
+
+<hr>
+
+<% if (locals.related_users) { %>
+  <!-- Related Users -->
+  <hr>
+  <%- partial('related-users', {users:related_users}) %>
+  <!--/Related Users -->
+<% } %>
+
+<!-- Badge -->
+<%- partial('badge', {render_div:'chart_div_interaction', friends_count:user.friends_count, statuses_count:user.statuses_count, favorites_count:user.favorites_count}) %>
+<!--/Badge-->
+
+<%
+  var colors = [
+    '#B1DAE2',
+    '#FFFAAC'
+  ]
+%>
+
+<!-- Charts -->
+<%- partial('chart', {series:followers, series_name:'Total Followers', color:colors[0], render_div:'chart_div_followers'}) %>
+<%- partial('chart', {series:diff_followers, series_name:'Followers gained per day', color:colors[1], render_div:'chart_div_diff_followers'}) %>
+<%- partial('chart', {series:diff_statuses, series_name:'Tweets per day', color:colors[0], render_div:'chart_div_diff_statuses'}) %>
+<%- partial('chart', {series:statuses, series_name:'Total Tweets', color:colors[1], render_div:'chart_div_statuses'}) %>
+<%- partial('chart', {series:following, series_name:'Total people followed', color:colors[1], render_div:'chart_div_following'}) %>
+<%- partial('chart', {series:diff_following, series_name:'People followed per day', color:colors[0], render_div:'chart_div_diff_following'}) %>
+<%- partial('chart', {series:favorites, series_name:'Total Favorites', color:colors[0], render_div:'chart_div_favorites'}) %>
+<%- partial('chart', {series:diff_favorites, series_name:'Favorites per day', color:colors[1], render_div:'chart_div_diff_favorites'}) %>
+<!--/Charts-->
+
+<hr>
+<!-- More times -->
+<!--<div class="row">
+  <div class="span">
+    <a href="<%= share_url+'/15' %>">2 weeks</a>
+  </div>
+  <div class="span">
+    <a href="<%= share_url+'/31' %>">1 month</a>
+  </div>
+  <div class="span">
+    <a href="<%= share_url+'/61' %>">2 months</a>
+  </div>
+  <div class="span">
+    <a href="<%= share_url+'/122' %>">4 months</a>
+  </div>
+</div>-->
+
+<!-- Social actions JS -->
+/*<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>*/
+<!--/ Social actions JS -->
+
+
+
+
+<script type="text/javascript">
+  window.pageInit = function(){
+    $('.timespan-select').change(function(){
+      var url_array = window.location.href.split('/');
+      if (url_array[url_array.length-1]/1){
+        url_array.pop();
+      }
+      url_array.push($(this).val());
+      window.location.href = url_array.join('/');
+    });
+  }
+</script>

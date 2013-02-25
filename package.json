@@ -1,0 +1,21 @@
+{
+    "name": "application-name"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.5.8"
+    , "ejs": ""
+    , "ntwitter": ""
+    , "redis": "0.7.2"
+    , "passport":""
+    , "passport-twitter":""
+    , "connect":""
+    , "connect-redis":""
+    , "authom":""
+    , "async":""
+    , "stripe":""
+    , "mongoose":""
+    , "ntwitter" : "git://github.com/mkrecny/ntwitter.git"
+    , "email-toolkit" : "git+ssh://git@github.com:mkrecny/email-toolkit.git"
+  }
+}

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+
+  (function(){
+    function drawChart(){
+
+			var data = google.visualization.arrayToDataTable([
+        ['Interaction', 'Volume'],
+        ['Follow others', <%= friends_count %>],
+        ['Tweet', <%= statuses_count %>],
+        ['Favorite tweets', <%= favorites_count %>]
+      ]);
+
+      var options = {
+        chartArea: {width:'100%', height:'100%'},
+        height:170,
+        colors:['#B1DAE2','#FFFAAC', '#9BDEC7'],
+        legend:{position:'none'}
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('<%= render_div %>'));
+      chart.draw(data, options);
+    }  
+    google.setOnLoadCallback(drawChart);
+
+  })();
+
+</script>

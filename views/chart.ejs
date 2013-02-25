@@ -1,0 +1,37 @@
+<%
+  var dayArr = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+%>
+
+<script type="text/javascript">
+
+  (function(){
+    function drawChart(){
+      var data = google.visualization.arrayToDataTable([
+
+      ['Day', '<%= series_name %>'],
+
+      <% Object.keys(series).forEach(function(day){ %>
+
+        ['<%= future_days ? new Date(day/1) : dayArr[new Date(day/1).getDay()] %>',  <%= series[day] %>]<%= day == Object.keys(series)[Object.keys(series).length-1] ? '' : ',' %>
+
+      <% }); %>
+
+       ]);
+
+      var options = {
+        chartArea: {width:'80%', height:'80%'},
+        height:300,
+        colors:['<%= color %>'],
+        legend:{position:'none'}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('<%= render_div %>'));
+
+      chart.draw(data, options);
+    }
+    <% if (Object.keys(series).length) { %>
+      google.setOnLoadCallback(drawChart);
+    <% } %>
+  })();
+
+</script>

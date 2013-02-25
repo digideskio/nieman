@@ -1,0 +1,205 @@
+<%
+
+  function getSeries(num_users, rate, price, accel){
+    var series = [];
+    for (var i=0; i<365; i++){
+      var ts = new Date().getTime();
+      ts += (24*60*60*1000)*i;
+      var curr_num_users = num_users+(i*rate);
+      series.push([new Date(ts), (curr_num_users*price)]);
+      rate+=accel;
+    }
+    return series;
+  }
+
+
+%>
+
+<div class="row">
+  <div class="span">
+  <p class="lead">
+    <h3>Graphs about money</h3>
+  </p>
+  <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="span8">
+    <p class="lead">
+      This is my <strong>pessimistic</strong> model. The assumptions are 
+      user acquisition rate:<strong> 1/day</strong>,
+      price point:<strong> $20/month</strong>,
+      user acquisition growth rate:<strong> 0/month</strong>.
+      I haven't had anyone unsubscribe from the service yet so I 
+      don't have any data on user loss rate.
+    </p>
+    <p class="lead">
+      <i>Date vs Expected Monthly Revenue</i>
+    </p>
+  </div>
+</div>
+<div id="chart">
+</div>
+<hr>
+<div class="row">
+  <div class="span8">
+    <p class="lead">
+      This is my <strong>conservative</strong> model. It involves an acceleration of the
+      user acquisition growth rate due to referrals of an increasingly large customer base.
+      The assumptions are 
+      user acquisition rate:<strong> 1/day</strong>,
+      price point:<strong> $20/month</strong>,
+      user acquisition growth rate:<strong> 1/month</strong>.
+    </p>
+    <p class="lead">
+      <i>Date vs Expected Monthly Revenue</i>
+    </p>
+  </div>
+</div>
+<div id="chart_2">
+</div>
+
+<div class="row">
+  <div class="span">
+  <p class="lead">
+    <h3>A note about costs</h3>
+  </p>
+  <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p class="lead">
+      Right now cost is $20 month in hosting (linode) and my living expenses. The hosting cost
+      scales up in a thresholdy manner, i.e. we provision a new box once we hit 1000 users.
+    </p>
+    <p class="lead">
+      Ulitmately what I want to do is use a 3rd party worker/scheduling platform like <a href="http://www.iron.io/products/worker">Iron Worker</a>
+      where you pay per task. This would give me more simplicity and flexibility around scheduling favorites.
+    </p>
+    <p class="lead">
+      I'd also like to hire a designer for a week at some point to redo the landing page. I think
+      this would cost about $600 from a good friend who's the designer at <a href="http://shelby.tv">shelby.tv</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span">
+  <p class="lead">
+    <h3>Vision</h3>
+  </p>
+  <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p class="lead">
+      I think a lot more can be done than simply favoriting tweets for people. Ultimately I'd
+      like to be the best white label toolkit for automated marketing. There's several components
+      that I'm excited about:
+      <ol>
+        <li>Expansion to Facebook, Youtube, Tumblr, Pinterest et al</li>
+        <li>Selling historical and forecast stats pages</li>
+        <li>A mass marketing email tool that allows user to target their audience and send custom emails (I use this internally and it rocks)</li>
+        <li>AB testing of social media profiles</li>
+        <li>A really simple API for systems integration, and also embeddable widgets for the less technical folks</li>
+      </ol>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span">
+  <p class="lead">
+    <h3>What do I need? ($)</h3>
+  </p>
+  <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p class="lead">
+      I've attempted to think about this from a 'what is followgen worth?' point of view. Frankly
+      I think there's too many unknowns at this point to make a remotely sensible guess. So the question
+      becomes 'what do I want/need?' 
+    </p>
+    <p class="lead">
+      I think followgen has a lot of potential for generating revenue, and for being acquired. I don't 
+      want to just give a chunk of equity away for the price of my living costs. Yes, this is something
+      you could build yourself, but I'm 100% focused/specialized on this and you probably don't
+      want to waste focus on stuff that isn't Sponsorcraft.
+    </p>
+    <p class="lead">
+      The projections suggest that I'll be able to live off of revenue from Followgen pretty soon - a manner 
+      of months. Part of me is seriously considering just doing this. But I think there'd be a lot more value
+      attached to a deal than just 'money now' ... mentorship.
+    </p>
+    <p class="lead">
+      <i>I'm looking for something between $60k and $100k at the price of $10k per %.</i>
+    </p>
+    <p class="lead">
+      Under such a scenario I would either press pause on my degree, or scale back to 
+      1 class per semester. I think there can be synergies between school and a startup 
+      like this - especially with technical classes.
+    </p>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+
+<script type="text/javascript">
+
+  (function(){
+    function drawChart(){
+      var data = google.visualization.arrayToDataTable([
+      ['Day', 'Expected Monthly Revenue'],
+      <% series = getSeries(98, 1, 20, 0) %>
+      <% (series).forEach(function(point, i){ %>
+        ['<%= point[0] %>',  <%=  point[1] %>]
+        <%= i===series.length-1 ? '' : ',' %>
+      <% }); %>
+       ]);
+      var options = {
+        chartArea: {width:'80%', height:'80%'},
+        height:600,
+        colors:['#4AD9D9'],
+        legend:{position:'none'}
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+      chart.draw(data, options);
+
+      var data_2 = google.visualization.arrayToDataTable([
+      ['Day', 'Expected Monthly Revenue'],
+      <% series_2 = getSeries(98, 1, 20, 0.03333333333333333) %>
+      <% (series_2).forEach(function(point, i){ %>
+        ['<%= point[0] %>',  <%=  point[1] %>]
+        <%= i===series_2.length-1 ? '' : ',' %>
+      <% }); %>
+       ]);
+      var options = {
+        chartArea: {width:'80%', height:'80%'},
+        height:600,
+        colors:['#4AD9D9'],
+        legend:{position:'none'}
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_2'));
+      chart.draw(data_2, options);
+    }
+
+    <% if (Object.keys(series).length) { %>
+      google.setOnLoadCallback(drawChart);
+    <% } %>
+
+  })();
+
+</script>

@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    <span style="color:#404040">Home
+    <small>welcome back <span style="color:#78A68F">@<%= user.screen_name %></span></small>
+  </h1>
+</div>
+
+
+
+<div class="row">
+  <div style="font-size:24px;color:" class="span4">
+    <a style="color:#78A68" href="/stats/<%= user.screen_name %>"><i style="margin-right:10px" class="icon-bar-chart"></i>Stats</a>
+    <hr>
+    <p class="lead">
+      See how you're doing on twitter.
+    </p>
+  </div>
+  <div style="font-size:24px;" class="span4">
+    <a href="/target/edit"><i style="margin-right:10px" class="icon-search"></i>Targets</a>
+    <hr>
+    <p class="lead">
+      Change your targeting terms.
+    </p>
+  </div>
+  
+  <!--<div style="font-size:24px" class="span4">
+    <a href="/plans/edit"><i style="margin-right:10px" class="icon-credit-card"></i>Plan</a>
+    <hr>
+    <p class="lead">
+      Change your plan (<%= user.plan %>).
+    </p>
+  </div>-->
+
+</div>

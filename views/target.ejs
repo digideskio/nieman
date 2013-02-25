@@ -1,0 +1,129 @@
+<div class="page-header">
+  <h1>
+    <% if (locals.edit) { %>
+      <span style="color:#404040">Targeting
+    <% } else { %>
+      <span style="color:#404040">Setup
+      <small>this is step 1 of 2</small>
+    <% } %>
+    </span>
+  </h1>
+</div>
+
+<% if (locals.user) { %>
+  <div class="row">
+    <div class="span">
+      <p class="lead">
+        Hello <strong style="color:#FFF001">@<%= user.screen_name %> </strong> 
+        <% if (!locals.edit) { %>
+        it's nice to meet you.
+        <% } %>
+      </p>
+      <hr>
+    </div>
+  </div>
+<% } %>
+
+  <% if (locals.user) { %>
+  <div class="row">
+    <div class="span1">
+      <img class="img" style="width:100%;border-radius:10px;" src="<%= user.profile_image_url %>" />
+    </div>
+    <div class="span">
+      <p>
+        <b>Followers</b>:  <%= user.followers_count %>
+        <b>Following</b>:  <%= user.friends_count %>
+      </p>
+      <blockquote>
+        <p>
+          "<%= user.description %>"
+        </p>
+      </blockquote>
+    </div>
+
+  </div>
+<hr>
+  <% } %>
+
+  <% if (locals.error) { %>
+    <div class="row">
+      <div class="span">
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Oops!</strong> Looks like you forgot to fill in all of the information correctly. 
+        </div>
+      </div>
+    </div>
+  <% } %>
+
+  <div class="row">
+    <div class="span4">
+      <div style="font-size:30px"><iclass="icon-search"></i></div>
+      <p class="lead">1. <strong>Target your audience</strong></p>
+      <% if (locals.edit) { %>
+        <form method="post" action="/target?destination=home&edit=true">
+      <% } else { %>
+        <form method="post" action="/target">
+      <% } %>
+        <input name="target_a" type="text" placeholder="Term 1"><br>
+        <input name="target_b" type="text" placeholder="Term 2"><br>
+        <input name="target_c" type="text" placeholder="Term 3"><br>
+    </div>
+    <div class="span3">
+      <p class="lead">
+        What is your target audience talking about on twitter?
+        Select three terms, such as 'coffee', '#breakingbad', or '@oprah'.
+        <a target="blank" href="/targeting-guide">View our Targeting Guide</a>
+      </p>
+    </div>
+    <div style="font-size:130px;color:#FFF001;opacity:0.2;margin-top:75px" class="span3 offset1">
+      <i class="icon-comments-alt icon-large"></i>  
+    </div>
+  </div>
+
+   <hr>
+   <div class="row">
+     <div class="span4">
+        <p class="lead">2. <strong>Select a region</strong></p>
+        <select name="geo">
+          <option value="everywhere">Anywhere</option>
+          <option value="usa">USA (entire)</option>
+          <option value="nyc">New York City</option>
+          <option value="boston">Boston</option>
+          <option value="sanfrancisco">San Francisco</option>
+          <option value="losangeles">Los Angeles</option>
+          <option value="eu">Europe (entire)</option>
+          <option value="london">London</option>
+          <option value="paris">Paris</option>
+          <option value="berlin">Berlin</option>
+        </select>
+      </div>
+      <div class="span3">
+        <p class="lead">
+          Where does your target audience live? If location is irrelevant, 
+          leave this as 'Anywhere'.
+        </p>
+      </div>
+      <div style="color:#FFF001;opacity:0.4;font-size:130px;margin-top:75px" class="span3 offset1">
+        <i class="icon-globe icon-large"></i>  
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="span4">
+        <p class="lead">3. <strong>Weekly email report</strong></p>
+        <input name="email" type="email" placeholder="myemail@mycompany.com"><br>
+      </div>
+      <div class="span3">
+        <p class="lead">
+          Where should we send it? This report will give you a day-by-day 
+          recount of the week.
+        </p>
+      </div>
+      <div style="opacity:0.2;color:#FFF001;font-size:130px;margin-top:75px" class="span3 offset1">
+        <i class="icon-pencil icon-large"></i>  
+      </div>
+    </div>
+        <hr>
+        <button type="submit" class="btn btn-large">Submit</button>
+      </form>

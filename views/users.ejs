@@ -1,0 +1,24 @@
+<%
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz1234567890';
+%>
+<h2> Users starting with "<%= letter %>" (<%= handles.length %>)</h2>
+<h3>  See users starting with:</h3>
+<p class="lead">
+  <% alphabet.split('').forEach(function(l){ %>
+   <a href="/users/<%= l %>"><%= l %></a> / 
+  <% }); %>
+</p>
+<% handles.forEach(function(handle){ %>
+  <p class="lead">
+    <% var h = handle.split(':')[2] %>
+    <a href="/stats/<%= h %>"><%= h %></a>
+  </p>
+<% }); %>
+<p class="lead">
+  See users starting with:
+</p>
+<p class="lead">
+  <% alphabet.split('').forEach(function(l){ %>
+   <a href="/users/<%= l %>"><%= l %></a> / 
+  <% }); %>
+</p>
