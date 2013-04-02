@@ -16,6 +16,7 @@
 
     <!-- Le styles -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/intro.js/introjs.css" rel="stylesheet">
 
     <style type="text/css">
       body {
@@ -43,18 +44,43 @@
 
   <body>
   <div class="container">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+   <% if (locals.studio) { %>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+    <% } else { %>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+    <% } %>
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">
-            StephNieman  
-          </a>
-          <ul class="nav">
-            <li class="<%= active=='home' ? 'active' : '' %>"><a href="/">Home</a></li>
-            <li class="<%= active=='bio' ? 'active' : '' %>"><a href="/bio">Bio</a></li>
-            <li class="<%= active=='buzz' ? 'active' : '' %>"><a href="/buzz">Buzz</a></li>
-            <li class="<%= active=='buzz' ? 'schedule' : '' %>"><a href="/schedule">Schedule</a></li>
-         </ul>
+
+        <% if (locals.studio) { %>
+            <a class="brand" href="#">
+              studio<strong>crm</stong>
+            </a>
+        <% } else { %>
+            <a class="brand" href="/">
+              StephNieman  
+            </a>
+            <ul class="nav">
+              <li class="<%= active=='home' ? 'active' : '' %>"><a href="/">Home</a></li>
+              <li class="<%= active=='bio' ? 'active' : '' %>"><a href="/bio">Bio</a></li>
+              <li class="<%= active=='buzz' ? 'active' : '' %>"><a href="/buzz">Buzz</a></li>
+              <li class="<%= active=='buzz' ? 'schedule' : '' %>"><a href="/schedule">Schedule</a></li>
+           </ul>
+          <% } %>
+
+          <% if (locals.studio) { %>
+            <div style="" class="row">
+              <div style="margin-left:0px;margin-top:2px" class="span pull-right">
+                <img style="height:25px" class="img-polaroid" src="<%= studio.profile_image_url %>" >
+              </div>
+              <div style="" class="span pull-right">
+                <a class="brand" href="#">
+                  <%= studio.name %>
+                </a>
+              </div>
+            </div>
+          <% } %>
+         <img class="pull-right" />
         </div>
       </div>
     </div>
@@ -62,7 +88,7 @@
     <div class="container">
 
     <%- body %>      
-
+      <% if (!locals.hide_footer) { %>
       <footer>
         <div class="row">
           <div style="text-align:center" class="span12">
@@ -71,6 +97,7 @@
           </div>
         </div>
       </footer>
+      <% } %>
 
     </div> <!-- /container -->
 
@@ -79,6 +106,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/intro.js/intro.js"></script>
     <script src="/javascripts/search.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
     <script type="text/javascript">

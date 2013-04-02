@@ -1,0 +1,58 @@
+<%
+  var lines = {
+    reward:[
+      'referred 3 customers.',
+      'bought a 50 pack.',
+      'wrote a blog post about you.',
+      'recommended you to all 20,000 of her followers.',
+      'bought a year membership. ',
+      'bought his/her first class.'
+    ],
+    retain:[
+      'hasn\'t been into your studio in a week.',
+      'canceled her account.',
+      'posted a negative tweet about you.',
+      'no showed 3 classes this week.',
+      'canceled 3 personal training sessions this month.',
+      'took classes at a competing studio.'
+    ],
+    capture:[
+      'is friends with your most active clients.',
+      'lives in your neighborhood.',
+      'tweeted about you but has never taken a class.',
+      'is facebook friends with your most active clients.',
+      'has similar interests to your target market.',
+      'loves spin OR yoga OR bootcamp.',
+      'is nervous about taking their first class.'
+    ]
+  };
+  var comments = lines[type];
+%>
+
+<% if (locals.u) { %>
+
+  <div class="row crm-cell">
+
+    <div style="width:50px" class="span1">
+      <img class="img-polaroid" src="<%= u.profile_image_url %>" />
+    </div>
+
+    <div class="span">
+      <div class="row">
+        <div class="span">
+          <strong><%= u.from_user_name %></strong>
+        </div>
+      </div>
+      <div class="row">
+        <div style="width:160px;max-width:160px;word-wrap:break-word" class="crm-cell-description span">
+					<%= comments[Math.floor(Math.random() * comments.length)] %>
+        </div>
+      </div>
+    </div>
+
+    <div <%= i===0 ? "data-intro='Reach out on Facebook, Twitter, LinkedIn or via Email.' data-step='2'" : '' %> class="crm-reach-out" class="span1">
+      <%- partial('crm-reach-out', {u:u}) %> 
+    </div>
+    
+  </div>
+<% } %>

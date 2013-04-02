@@ -1,0 +1,73 @@
+<%
+  var users_array = Object.keys(users);
+  console.log(users_array.length);
+  console.log(studio);
+  function rewriteImgUrl(url){
+    return url.replace('a0.twimg', 'si0.twimg').replace('_normal', '_reasonably_small');
+  }
+%>
+
+<div style="margin-top:20px" class="row">
+  <div class="span4 crm-col-head">
+    <span class="crm-col-head-txt">Reward</span>
+    <span class="crm-col-head-icon span pull-right"><i class="icon-gift"></i></span>
+  </div>
+  <div class="span4 crm-col-head">
+    <span class="crm-col-head-txt">Reconnect</span>
+    <span class="crm-col-head-icon span pull-right"><i class="icon-refresh"></i></span>
+  </div>
+  <div class="span4 crm-col-head">
+    <span class="crm-col-head-txt">Meet</span>
+    <span class="crm-col-head-icon span pull-right"><i class="icon-bullhorn"></i></span>
+  </div>
+</div>
+<div class="row"><!--foo-->
+
+  <div data-position='top' data-intro='These are clients you need to reward.' data-step='1' class="span4 crm-col">
+    <div class="crm-col-inner">
+      <% for (var i=0;i<10;i++){ %>
+        <% var u = users[users_array[i]]; %>
+        <% if (u) { %>
+          <%- partial('refer-item', {u:u, type:'reward', i:i}) %>
+        <% } %>
+      <% } %>
+    </div>
+  </div>
+
+  <div data-position='top' data-intro='These are clients that you need to reconnect with.' data-step='3' class="span4 crm-col">
+    <div class="crm-col-inner">
+      <% for (var i=10;i<20;i++){ %>
+        <% var u = users[users_array[i]]; %>
+        <% if (u) { %>
+          <%- partial('refer-item', {u:u, type:'retain', i:i}) %>
+        <% } %>
+      <% } %>
+    </div>
+  </div>
+
+  <div data-position='top' data-intro='These are potential clients. Reach out to them' data-step='4' class="span4 crm-col">
+    <div class="crm-col-inner">
+      <% for (var i=20;i<30;i++){ %>
+        <% var u = users[users_array[i]]; %>
+        <% if (u) { %>
+          <%- partial('refer-item', {u:u, type:'capture', i:i}) %>
+        <% } %>
+      <% } %>
+    </div>
+  </div>
+
+</div>
+<button id="startdemo" style="position:absolute;bottom:10px;right:10px" class="btn btn-success">Start Demo</button>
+<script type="text/javascript">
+    window.pageInit = function(){
+      $("[rel='tooltip']").tooltip({placement:'top'});
+      $('body').css('background-color', '#e1e1e1');
+      $('.crm-col').css('height', $(window).height()-170+'px');
+      $('.crm-cell').hover(function(){
+        jQuery('.crm-reach-out', this).toggle();
+      });
+      $('#startdemo').click(function(){
+        introJs().start();
+      });
+    }
+</script>

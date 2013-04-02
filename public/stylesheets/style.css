@@ -1,3 +1,94 @@
+.crm-reach-out{
+  display:none;
+  color:#888;
+  font-size:16px;
+  margin-top:37px;
+}
+
+
+::-webkit-scrollbar {
+ width: 6px;
+}
+::-webkit-scrollbar-track {
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+ -webkit-border-radius: 10px;
+ border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #BCF1ED; 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4); 
+}
+             
+
+.reach-out{
+  opacity:0.6;
+  cursor:pointer;
+}
+
+.reach-out:hover{
+  opacity:1;
+}
+
+.crm-cell-description{
+  font-weight:200;
+}
+
+.crm-col{
+  background-color:white;
+  overflow:scroll;
+  overflow-x:hidden;
+  border-bottom:1px solid #E3DAC9;
+}
+
+.crm-col-head-txt{
+  margin-left:10px;
+}
+
+.crm-col-head-icon{
+  margin-right:10px;
+}
+
+.crm-col-head{
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  padding-top:10px;
+  padding-bottom:10px;
+  background-color:#777;
+  color:#f1f1f1;
+  font-size:18px;
+  font-weight:200;
+}
+
+.crm-cell{
+  padding-left:10px;
+  padding-top:10px;
+  padding-bottom:10px;
+  border-bottom:1px solid #E3DAC9;
+  background-color:#f1f1f1;
+}
+
+.crm-cell:hover{
+  background-color:#fff;
+}
+
+.crm-col-inner{
+  border-left:1px solid #E3DAC9;
+}
+
+.uplift-cell{
+  color:#2BAA59;
+}
+
+.revolve-cell{
+  color:#439B8F;
+}
+
 .logo-small{
   width:25px;
   margin-right:5px;
