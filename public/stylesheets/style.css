@@ -24,7 +24,6 @@
 ::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(255,0,0,0.4); 
 }
-             
 
 .reach-out{
   opacity:0.6;
@@ -48,6 +47,7 @@
 
 .crm-col-head-txt{
   margin-left:10px;
+  letter-spacing:0.3px;
 }
 
 .crm-col-head-icon{

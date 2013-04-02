@@ -17,7 +17,7 @@
     <span class="crm-col-head-icon span pull-right"><i class="icon-refresh"></i></span>
   </div>
   <div class="span4 crm-col-head">
-    <span class="crm-col-head-txt">Meet</span>
+    <span class="crm-col-head-txt">Discover</span>
     <span class="crm-col-head-icon span pull-right"><i class="icon-bullhorn"></i></span>
   </div>
 </div>
@@ -26,7 +26,7 @@
   <div data-position='top' data-intro='These are clients you need to reward.' data-step='1' class="span4 crm-col">
     <div class="crm-col-inner">
       <% for (var i=0;i<10;i++){ %>
-        <% var u = users[users_array[i]]; %>
+        <% var u = users[users_array[Math.floor(Math.random() * users_array.length)]]; %>
         <% if (u) { %>
           <%- partial('refer-item', {u:u, type:'reward', i:i}) %>
         <% } %>
@@ -37,7 +37,7 @@
   <div data-position='top' data-intro='These are clients that you need to reconnect with.' data-step='3' class="span4 crm-col">
     <div class="crm-col-inner">
       <% for (var i=10;i<20;i++){ %>
-        <% var u = users[users_array[i]]; %>
+        <% var u = users[users_array[Math.floor(Math.random() * users_array.length)]]; %>
         <% if (u) { %>
           <%- partial('refer-item', {u:u, type:'retain', i:i}) %>
         <% } %>
@@ -48,7 +48,7 @@
   <div data-position='top' data-intro='These are potential clients. Reach out to them' data-step='4' class="span4 crm-col">
     <div class="crm-col-inner">
       <% for (var i=20;i<30;i++){ %>
-        <% var u = users[users_array[i]]; %>
+        <% var u = users[users_array[Math.floor(Math.random() * users_array.length)]]; %>
         <% if (u) { %>
           <%- partial('refer-item', {u:u, type:'capture', i:i}) %>
         <% } %>
