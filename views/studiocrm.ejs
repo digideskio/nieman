@@ -67,7 +67,14 @@
         jQuery('.crm-reach-out', this).toggle();
       });
       $('#startdemo').click(function(){
-        introJs().start();
+        $('#intro-reach-out').toggle();
+        var count = 0;
+        introJs().start().onchange(function(){
+          count+=1;
+          if (count>1){
+            $('#intro-reach-out').hide();
+          }
+        });
       });
     }
 </script>
