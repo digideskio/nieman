@@ -1,0 +1,31 @@
+Stephanie Nieman	3.6.13	430om	Real - REVEAL	21	N/A
+Stephanie Nieman	3.6.13	5:30PM	Body - REVEAL 	26	N/A
+Stephanie Nieman	3.7.13	5:30PM	Body	24	7
+Stephanie Nieman	3.7.13	6:30PM	Real	47	2
+Stephanie Nieman	3.8.13	5:30PM	Real	15	0
+Stephanie Nieman	3.8.13	6:30PM	Body	28	2
+Stephanie Nieman	3.11.13	8am	Body	6	2
+Stephanie Nieman	3.11.13	9:30am 	Real 	12	2
+Stephanie Nieman	3.12.13	7AM 	Real 	28	10
+Stephanie Nieman	3.12.13	8am	body	12	0
+Stephanie Nieman	3.14.13	5:30PM	Body	23	5
+Stephanie Nieman	3.14.13	6:30PM	Real	38	7
+Stephanie Nieman	3.15.13	5:30PM	Real	13	2
+Stephanie Nieman	3.15.13	6:30pm	Body	30	5
+Stephanie Nieman	3.17.13	9:30am 	Real	15	4
+Stephanie Nieman	3.17.13	10:30AM	Body	44	8
+Stephanie Nieman	3.18/13	8:00AM	Body 	6	0
+Stephanie Nieman	3.18.13	9:30PM	Real	11	3
+Stephanie Nieman	3.19.13	7am 	Real 	30	8
+Stephanie Nieman	3.19.13	8am 	Body 	5	1
+Stephanie Nieman	3.21.13	5:30PM	Body	20	4
+Stephanie Nieman	3.21.13	6:30PM	Real	47	9
+Stephanie Nieman	3.22.13	5:30PM	Real	16	4
+Stephanie Nieman	3.22.13	6:30PM	Body	42	11
+Stephanie Nieman	3.24.13	9:30am 	Real	10	5
+Stephanie Nieman	3.24.13	10:30am	Body	42	9
+Stephanie Nieman	3.24.13	11:30am	Real Ride End.	25	6
+Stephanie Nieman	3.25.13	8:00am	Body Ride	15	0
+Stephanie Nieman	3.25.13	9:30am 	Real 	8	4
+Stephanie Nieman	3.26.13	7am 	Real 	22	9
+Stephanie Nieman	3.26.13	8am 	Body 	13	3

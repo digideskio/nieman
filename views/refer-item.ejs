@@ -38,20 +38,25 @@
     </div>
 
     <div class="span">
+
       <div class="row">
+
         <div class="span">
           <strong><%= u.from_user_name %></strong>
         </div>
+      
       </div>
+
       <div class="row">
-        <div style="width:160px;max-width:160px;word-wrap:break-word" class="crm-cell-description span">
+        <div style="width:255px;word-wrap:break-word" class="crm-cell-description span">
 					<%= comments[Math.floor(Math.random() * comments.length)] %>
         </div>
       </div>
     </div>
-
-    <div <%= i===0 ? "id='intro-reach-out' data-intro='Reach out on Facebook, Twitter, LinkedIn or via Email.' data-step='2'" : '' %> class="crm-reach-out" class="span1">
-      <%- partial('crm-reach-out', {u:u}) %> 
+    <div class="row">
+      <div <%= i===0 ? "id='intro-reach-out' data-intro='Reach out on Facebook, Twitter, LinkedIn or via Email.' data-step='2'" : '' %> class="crm-reach-out span pull-right">
+        <%- partial('crm-reach-out', {u:u}) %> 
+      </div>
     </div>
     
   </div>
